@@ -1,0 +1,14 @@
+<nav>
+  <a href="{% url "index" %}" class="brand"><strong>奶茶铺</strong></a>
+  <input id="menub" type="checkbox" class="show">
+  <label for="menub" class="burger pseudo button">menu</label>
+  <div class="menu">
+    <a href="{% url "forum_index" %}" class="pseudo button">进入奶茶铺</a>
+    {% if user.is_authenticated %}
+      <a href="{% url "identity_index" %}" class="pseudo button">i/{{ identity.current.name }}</a>
+      <a href="{% url "user_settings" %}" class="pseudo button">u/{{ user.username }}</a>
+    {% else %}
+      <a href="{% url "user_login" %}" class="pseudo button">登录</a>
+    {% endif %}
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+verify_ssl = true
+name = "pip_conf_index_global"
+
+[packages]
+django = "*"
+django-htmx = "*"
+markdown-it-py = "*"
+
+[dev-packages]
+black = "*"
+isort = "*"
+djlint = "*"
+
+[requires]
+python_version = "3.11"

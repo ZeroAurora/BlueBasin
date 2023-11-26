@@ -1,0 +1,14 @@
+{% load markdown %}
+<article class="card">
+  <header>
+    <h3>{{ post.title }}</h3>
+    <br>
+    <small>i/{{ post.author.name }} | {{ post.created_at }}</small>
+  </header>
+  <footer>
+    <div>{{ post.content|markdown|striptags|truncatechars:50|safe }}</div>
+    <div>
+      <a href="{% url "forum_posts_view" post.id %}" ><small>阅读更多</small></a>
+    </div>
+  </footer>
+</article>

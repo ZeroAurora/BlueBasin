@@ -1,0 +1,19 @@
+<div class="flex pagination">
+  <div>
+    {% if page.has_previous %}
+      <a href="?page={{ page.previous_page_number }}" class="pseudo button">&lt;</a>
+    {% else %}
+      <a class="pseudo button">&lt;</a>
+    {% endif %}
+  </div>
+  <div>
+    <a class="pseudo button">{{ page.number }} / {{ page.paginator.num_pages }}</a>
+  </div>
+  <div>
+    {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}" class="pseudo button">&gt;</a>
+    {% else %}
+      <a class="pseudo button">&gt;</a>
+    {% endif %}
+  </div>
+</div>

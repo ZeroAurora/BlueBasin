@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block title %}
+  登录 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <form action="" method="post">
+      {% csrf_token %}
+      <h1>登录</h1>
+      <footer>
+        <label for="username">用户名</label>
+        <input type="text"
+               name="username"
+               id="username"
+               placeholder="请输入用户名"
+               required>
+        <label for="password">密码</label>
+        <input type="password"
+               name="password"
+               id="password"
+               placeholder="请输入密码"
+               required>
+        <button type="submit">登录</button>
+        <a href="{% url "user_signup" %}" class="pseudo button">注册</a>
+      </footer>
+    </form>
+  </main>
+{% endblock body %}

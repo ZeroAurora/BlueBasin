@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block title %}
+  用户注册 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <form action="" method="post">
+      {% csrf_token %}
+      <h1>注册</h1>
+      <footer>
+        <label for="username">用户名</label>
+        <input type="text"
+               name="username"
+               id="username"
+               placeholder="请输入用户名"
+               required>
+        <label for="email">邮箱</label>
+        <input type="email" name="email" id="email" placeholder="请输入邮箱" required>
+        <label for="phone">手机号</label>
+        <input type="tel" name="phone" id="phone" placeholder="请输入手机号" required>
+        <label for="password">密码</label>
+        <input type="password"
+               name="password"
+               id="password"
+               placeholder="请输入密码"
+               required>
+        <label for="confirm_password">确认密码</label>
+        <input type="password"
+               name="confirm_password"
+               id="confirm_password"
+               placeholder="请再次输入密码"
+               required>
+        <p>注册即代表您同意我们的 <a href="{% url "terms" %}">服务协议</a>。</p>
+        <button type="submit">注册</button>
+      </footer>
+    </form>
+  </main>
+{% endblock body %}

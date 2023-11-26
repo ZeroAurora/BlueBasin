@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% block title %}
+  {{ post.title }} | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    {% if post.parent %}
+      <article class="card">
+        <header>
+          本帖是另一帖的回复。<a href={% url "forum_posts_view" post.parent.id %}>查看原帖……</a>
+        </header>
+      </article>
+    {% endif %}
+    {% include "./components/post_card.html" %}
+    <h2>回复列表</h2>
+    {% for reply in replies %}
+      {% include "./components/post_card.html" with post=reply %}
+      {% if forloop.last %}
+        {% include "./components/pagination.html" with page=replies %}
+      {% endif %}
+    {% empty %}
+      <p>暂无</p>
+    {% endfor %}
+    <h2>发表回复</h2>
+    {% include "./components/post_form.html" with reply_to=post %}
+  </main>
+{% endblock body %}

@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block title %}
+  身份列表 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <h1>身份列表</h1>
+    <p>身份是你在奶茶铺的对外展示昵称。你现在拥有 {{ identity.all|length }} 个身份。</p>
+    <ul>
+      {% for id in identity.all %}
+        <li>
+          <span>{{ id.name }}</span>
+          {% if id == identity.current %}<span>（当前）</span>{% endif %}
+          {% if id.deprecated_at %}（已弃用）{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <form method="post">
+      {% csrf_token %}
+      <label for="identity">更换身份</label>
+      <select name="identity" required>
+        <option value="" selected>选择一个身份……</option>
+        {% for id in identity.available %}<option value="{{ id.id }}">{{ id.name }}</option>{% endfor %}
+        <option value="new">快速新建随机身份</option>
+      </select>
+      <button type="submit">提交</button>
+    </form>
+  </main>
+{% endblock body %}

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/picnic@7.1.0/picnic.min.css"
+          integrity="sha256-5T8QYQPUORrO1aSWJdN4bowilPiT+ot6fPfJperdmTU="
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+          integrity="sha256-ko4j5rn874LF8dHwW29/xabhh8YBleWfvxb8nQce4Fc="
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+  </head>
+  <body hx-boost="true">
+    {% include "_nav.html" %}
+    {% block body %}
+    {% endblock body %}
+    {% include "_footer.html" %}
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.8/dist/htmx.min.js"
+            integrity="sha256-xPzk3FzJyMPJvxqniNVLssslzScRTrBlUUlP9hww1vs="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"
+            integrity="sha256-4mJNT2bMXxcc1GCJaxBmMPdmah5ji0Ldnd79DKd1hoM="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"
+            integrity="sha256-AjM0J5XIbiB590BrznLEgZGLnOQWrt62s3BEq65Q/I0="
+            crossorigin="anonymous"></script>
+    <script src="{% static "js/main.js" %}"></script>
+  </body>
+</html>

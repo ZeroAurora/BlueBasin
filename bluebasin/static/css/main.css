@@ -1,0 +1,13 @@
+textarea {
+    resize: vertical;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1080px;
+    padding: 4em 1em;
+}
+
+.pagination > div > a {
+    display: block;
+}

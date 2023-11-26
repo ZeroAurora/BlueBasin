@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% block title %}
+  用户设置 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <h1>您的个人信息已成功更改</h1>
+    <a href="{% url "user_settings" %}">返回</a>
+  </main>
+{% endblock body %}

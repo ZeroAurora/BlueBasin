@@ -1,0 +1,18 @@
+{% extends "_base.html" %}]
+{% load markdown %}
+{% block title %}
+  欢迎 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <h1>欢迎！</h1>
+    <p>
+      欢迎来到奶茶铺，这是一个 <strong>前端匿名、后端实名</strong> 的交流平台。在这里，你没有网名（所以不用担心修改用户名的问题），有的只是一串随机字符串，称作 <em>身份</em>。身份是他人对你的唯一认知。
+    </p>
+    <p>
+      在你开始之前，请确保你已经阅读了 <a href="{% url "code_of_conduct" %}">社区准则</a> 和 <a href="{% url "terms" %}">服务协议</a>。最重要的一点是，请不要将本平台当作法外之地。<strong>匿名不代表可以不负责任，也不能免除不负责任所带来的后果。如果你不能遵守社区准则，我们无法保证他人对你的友善态度。</strong>
+    </p>
+    <p>现在，一个身份已经为你自动生成好了。带上它，去探索这个新天地吧！</p>
+    <a href="{% url "forum_index" %}" class="button">进入奶茶铺</a>
+  </main>
+{% endblock body %}

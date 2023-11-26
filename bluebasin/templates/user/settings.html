@@ -1,0 +1,41 @@
+{% extends "_base.html" %}
+{% block title %}
+  用户设置 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <h1>用户设置</h1>
+    <h2>登出账户</h2>
+    <form action="{% url "user_logout" %}" method="post">
+      {% csrf_token %}
+      <input type="submit" class="button" value="登出">
+    </form>
+    <h2>个人信息</h2>
+    <form action="info" method="post">
+      {% csrf_token %}
+      <label for="email">邮件地址</label>
+      <input type="email"
+             name="email"
+             id="email"
+             value="{{ user.email }}"
+             required>
+      <label for="phone">手机号</label>
+      <input type="text" name="phone" id="phone" value="{{ user.phone }}" required>
+      <input type="submit" class="button" value="保存">
+    </form>
+    <h2>密码</h2>
+    <form action="password" method="post">
+      {% csrf_token %}
+      <label for="old_password">旧密码</label>
+      <input type="password" name="old_password" id="old_password" required>
+      <label for="new_password">新密码</label>
+      <input type="password" name="new_password" id="new_password" required>
+      <label for="confirm_password">确认密码</label>
+      <input type="password"
+             name="confirm_password"
+             id="confirm_password"
+             required>
+      <input type="submit" class="button" value="保存">
+    </form>
+  </main>
+{% endblock body %}

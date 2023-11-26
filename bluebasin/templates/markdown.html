@@ -1,0 +1,31 @@
+{% extends "_base.html" %}]
+{% load markdown %}
+{% block title %}
+  Markdown 使用指南 | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <h1>Markdown 使用指南</h1>
+    <h2>什么是 Markdown</h2>
+    <p>
+      Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。其基本语法可以在 <a href="https://www.runoob.com/markdown/md-tutorial.html">这里</a> 查看。
+    </p>
+    <h2>本网站中的 Markdown</h2>
+    <p>本网站使用 markdown-it-py 实现 Markdown 的渲染，兼容 CommonMark 规范。高亮使用 Prism。</p>
+    <h2>限制</h2>
+    <h3>语法限制</h3>
+    <ul>
+      <li>
+        <p>内容中使用的 HTML 语法会被直接渲染（称为 escaping）。</p>
+      </li>
+      <li>
+        <p>为确保页面排版整洁，请不要使用 h1（#）与 h2（##），并从 h3（###）开始排列标题。</p>
+      </li>
+      <li>
+        <p>请使用两个换行来开始新的段落。</p>
+      </li>
+    </ul>
+    <h3>长度限制</h3>
+    <p>本网站目前单条内容（含 Markdown 语法）的长度限制为 10000 字符，若超出则会无法发布。请考虑将长文分段发布。</p>
+  </main>
+{% endblock body %}

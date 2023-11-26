@@ -1,0 +1,17 @@
+{% load markdown %}
+<article class="card">
+  <header>
+    {% if post.title %}
+      <h3>{{ post.title }}</h3>
+      <br>
+    {% endif %}
+    <small>i/{{ post.author.name }} | {{ post.created_at }}</small>
+  </header>
+  <footer>
+    <div>{{ post.content|markdown|safe }}</div>
+    {% if post.author.user == user and False %}
+      <a href="{% url 'forum_posts_edit' post.pk %}">编辑</a>
+      <a href="{% url 'forum_posts_delete' post.pk %}">删除</a>
+    {% endif %}
+  </footer>
+</article>
