@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponseForbidden
 from django.shortcuts import render
 
 from .models import Identity
 
 
+@login_required
 def index(request: HttpRequest):
     if request.method == "POST":
         id_field = request.POST.get("identity")

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponseBadRequest
 from django.shortcuts import redirect, render
@@ -21,6 +22,7 @@ def posts_index(request: HttpRequest):
     return redirect("forum_index")
 
 
+@login_required
 def posts_create(request: HttpRequest):
     if request.method == "POST":
         form = CreatePostForm(request.POST)

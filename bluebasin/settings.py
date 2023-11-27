@@ -71,7 +71,7 @@ TEMPLATES = [
             ],
             "libraries": {
                 "markdown": "bluebasin.templatetags.markdown",
-            }
+            },
         },
     },
 ]
@@ -138,3 +138,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Auth
 
 AUTH_USER_MODEL = "user.User"
+
+LOGIN_URL = "/user/login/"

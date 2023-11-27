@@ -22,6 +22,10 @@
       <p>暂无</p>
     {% endfor %}
     <h2>发表回复</h2>
-    {% include "./components/post_form.html" with reply_to=post %}
+    {% if user.is_authenticated %}
+      {% include "./components/post_form.html" with reply_to=post %}
+    {% else %}
+      <p>请先 <a href="{% url "user_login" %}">登录</a></p>
+    {% endif %}
   </main>
 {% endblock body %}

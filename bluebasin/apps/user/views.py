@@ -1,18 +1,23 @@
-from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse
 from django.contrib import auth
-
-from .forms import InfoSettingsForm, PasswordSettingsForm, LoginForm, SignupForm
-from .models import User
+from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
 
 from bluebasin.apps.identity.models import Identity
 
+from .forms import (InfoSettingsForm, LoginForm, PasswordSettingsForm,
+                    SignupForm)
+from .models import User
+
 # todo: use template to render errors.
 
+
+@login_required
 def settings(request):
     return render(request, "user/settings.html")
 
 
+@login_required
 def settings_info(request: HttpRequest):
     if request.method != "POST":
         return HttpResponse("Method not allowed", status=405)
@@ -29,6 +34,7 @@ def settings_info(request: HttpRequest):
     return render(request, "user/settings_info.html")
 
 
+@login_required
 def settings_password(request: HttpRequest):
     if request.method != "POST":
         return HttpResponse("Method not allowed", status=405)
@@ -72,6 +78,9 @@ def signup(request: HttpRequest):
 
 
 def login(request: HttpRequest):
+    if request.user.is_authenticated:
+        return redirect(request.GET.get("next") or "index")
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -82,16 +91,18 @@ def login(request: HttpRequest):
                 auth.login(request, user)
                 if iden := Identity.objects.filter(user=user).first():
                     request.session["identity"] = iden.pk
-                    return redirect("index")
+                    return redirect(request.GET.get("next") or "index")
                 else:
                     iden = Identity.objects.create(user=user)
                     request.session["identity"] = iden.pk
                     return redirect("welcome")
             else:
                 return HttpResponse("Invalid username or password")
+
     return render(request, "user/login.html")
 
 
+@login_required
 def logout(request: HttpRequest):
     if request.method == "POST":
         auth.logout(request)
