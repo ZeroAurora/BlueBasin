@@ -37,6 +37,9 @@ class Post(models.Model):
             return post.children.filter(deleted_at=None).order_by("created_at")
         else:
             return []
+        
+    def __str__(self):
+        return f"{self.pk} - {self.title} - {self.author}"
 
 
 # class Reaction(models.Model):
