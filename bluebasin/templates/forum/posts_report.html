@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+{% block title %}
+  举报 {{ post.title }} | 奶茶铺
+{% endblock title %}
+{% block body %}
+  <main class="container">
+    <div>
+      <h1>举报 {{ post.title }}</h1>
+      {% for message in messages %}
+        {% if message.message == "report:success" %}
+          <article class="card">
+            <header>
+              <p>举报成功，我们会尽快受理。</p>
+            </header>
+          </article>
+        {% endif %}
+      {% endfor %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <label for="type">举报类型</label>
+        <select name="type" id="type" required>
+          <option value="1">违法内容</option>
+          <option value="2">垃圾广告</option>
+          <option value="3">人身骚扰</option>
+          <option value="4">厌恶言论</option>
+          <option value="5">宣扬暴力</option>
+          <option value="6">（仅供发布者）请求自删</option>
+          <option value="0">其他（请填写举报理由）</option>
+        </select>
+        <label for="detail">举报理由</label>
+        <textarea name="detail" id="detail" rows="3" required></textarea>
+        <button type="submit" class="btn btn-danger">提交</button>
+      </form>
+    </div>
+  </main>
+{% endblock body %}

@@ -2,10 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponseBadRequest
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 from bluebasin.apps.identity.models import Identity
+from bluebasin.apps.admin.models import Report
 
-from .forms import CreatePostForm, ReplyPostForm
+from .forms import CreatePostForm, ReplyPostForm, ReportPostForm
 from .models import Post
 
 
@@ -58,3 +60,22 @@ def posts_view(request: HttpRequest, post_id: int):
     size = request.GET.get("size", 10)
     replies = Paginator(Post.get_replies(post_id), size).get_page(page)
     return render(request, "forum/posts_view.html", {"post": post, "replies": replies})
+
+@login_required
+def posts_report(request: HttpRequest, post_id: int):
+    if request.method == "POST":
+        form = ReportPostForm(request.POST)
+        if form.is_valid():
+            report = Report(
+                author=request.user,
+                type=form.cleaned_data["type"],
+                detail=form.cleaned_data["detail"],
+                origin=Post.objects.get(pk=post_id),
+            )
+            report.save()
+            messages.info(request, "report:success")
+        else:
+            return HttpResponseBadRequest()
+
+    post = Post.objects.get(pk=post_id)
+    return render(request, "forum/posts_report.html", {"post": post})

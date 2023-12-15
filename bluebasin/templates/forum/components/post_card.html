@@ -9,6 +9,9 @@
   </header>
   <footer>
     <div>{{ post.content|markdown|safe }}</div>
+    {% if user.is_authenticated %}
+      <a href="{% url "forum_posts_report" post.pk %}">举报</a>
+    {% endif %}
     {% if post.author.user == user and False %}
       <a href="{% url 'forum_posts_edit' post.pk %}">编辑</a>
       <a href="{% url 'forum_posts_delete' post.pk %}">删除</a>

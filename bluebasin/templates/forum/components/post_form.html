@@ -7,7 +7,7 @@
   <label for="content">
     内容（可以使用 Markdown，参见 <a href="{% url "markdown" %}">Markdown 使用指南</a>）
   </label>
-  <textarea id="content" name="content" placeholder="内容" required></textarea>
+  <textarea id="content" name="content" placeholder="内容" rows="10" required></textarea>
   {% if not edit %}
     <p>
       您的帖子将会以 i/{{ identity.current.name }} 的身份发布。<a href="{% url "identity_index" %}">更换身份……</a>

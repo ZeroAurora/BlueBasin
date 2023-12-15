@@ -5,6 +5,9 @@
   <div class="menu">
     <a href="{% url "forum_index" %}" class="pseudo button">进入奶茶铺</a>
     {% if user.is_authenticated %}
+      {% if user.is_staff %}
+        <a href="{% url "admin:index" %}" class="pseudo button" hx-boost="false">管理</a>
+      {% endif %}
       <a href="{% url "identity_index" %}" class="pseudo button">i/{{ identity.current.name }}</a>
       <a href="{% url "user_settings" %}" class="pseudo button">u/{{ user.username }}</a>
     {% else %}
